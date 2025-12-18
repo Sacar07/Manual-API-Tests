@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "7a9df0eb-70a2-47b5-ad64-d867c8d252a6",
+		"name": "My-collection-1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32760455",
+		"_collection_link": "https://api-testers-3624.postman.co/workspace/bd8e6fd8-5747-4f19-8464-fc414954a7e2/collection/32760455-7a9df0eb-70a2-47b5-ad64-d867c8d252a6?action=share&source=collection_link&creator=32760455"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/users",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"role\": \"role 1\",\r\n        \"salary\": 93,\r\n        \"id\": \"1\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/users",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/users/72",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"users",
+						"72"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseURL1}}/users/72",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"username\": \"username 1\",\r\n        \"role\": \"role 1\",\r\n        \"salary\": -93,\r\n        \"id\": \"1\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/users/1",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseURL1}}/users/72",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"avatar\": \"https://avatars.githubusercontent.com/u/87602577\",\r\n    \"id\": \"72\",\r\n    \"name\": \"sacar\",\r\n    \"role\": \"qa engineer\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseURL1}}/users/72",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"users",
+						"72"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "baseURL1",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
