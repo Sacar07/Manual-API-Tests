@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "d4fe6378-2b3b-41a9-9ba9-a5912a39df64",
+    "name": "mock-api-reqres-workFlow",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "myFolder",
+      "item": [
+        {
+          "name": "New Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5f8178d5-5779-41fc-8bdc-b35daf81be45",
+                "exec": [
+                  "console.log(\"pre-res for request\");\r",
+                  "pm.test(\"status code is 200\", () => {\r",
+                  "    // pm.response.to.have.status(200);\r",
+                  "    pm.response.code == 200;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type is present\", () => {\r",
+                  "    pm.response.to.have.header(\"Content-Type\");\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Content-Type header is application/json\", () => {\r",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.eql(\"application/json\");\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Response time to be below 200 ms\", () => {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                  "})\r",
+                  "\r",
+                  "const jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Test data type of the response\", () => {\r",
+                  "    pm.expect(jsonData).to.be.an(\"array\");\r",
+                  "    jsonData.forEach(user => {\r",
+                  "        pm.expect(user.role).to.be.a(\"string\");\r",
+                  "        pm.expect(user.salary).to.be.a(\"number\");\r",
+                  "    })\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"value of all fields of the user sacar\", () => {\r",
+                  "    const sacarUser = jsonData.find(user => user.username === \"sacar\");\r",
+                  "    console.log(sacarUser)\r",
+                  "        pm.expect(sacarUser.id).to.eql(\"10\");\r",
+                  "        pm.expect(sacarUser.role).to.eql(\"qa\");\r",
+                  "        pm.expect(sacarUser.salary).to.eql(90000);\r",
+                  "    \r",
+                  "})\r",
+                  "\r",
+                  "var schema = {\r",
+                  "  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+                  "  \"type\": \"array\",\r",
+                  "  \"items\": {\r",
+                  "    \"type\": \"object\",\r",
+                  "    \"properties\": {\r",
+                  "      \"username\": { \"type\": \"string\" },\r",
+                  "      \"role\": { \"type\": \"string\" },\r",
+                  "      \"salary\": { \"type\": \"number\" },\r",
+                  "      \"id\": { \"type\": \"string\" }\r",
+                  "    },\r",
+                  "    \"required\": [\"username\", \"role\", \"salary\", \"id\"]\r",
+                  "  }\r",
+                  "}\r",
+                  "\r",
+                  "\r",
+                  "pm.test('Schema is valid', () =>{\r",
+                  "    pm.expect(tv4.validate(jsonData,schema)).to.be.true;\r",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d269b29e-b8c1-4f83-9c42-46b9ddd2064d",
+                "exec": [
+                  "console.log(\"pre-req for request\");\r",
+                  "pm.variables.set(\"url_local\",\"https://6942d9c569b12460f31309d6.mockapi.io\")"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "1e52cbac-527c-4708-83c0-f9dcf1c457fa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL1}}/users",
+              "host": [
+                "{{baseURL1}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6b7f51b7-4cc4-44f4-99d2-28bca4f9a57a",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "7cc00b76-1b93-403f-8cea-14db60d2f3cb",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              "console.log(\"pre-req for folder\");"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "288d0a64-2505-4ce4-83c4-af277a24874d",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              "console.log(\"post-res for folder\");"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "99ba27ae-f125-4339-80fc-c12fc726fbd3",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "console.log(\"pre-req for collection\");"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "f0494485-c813-4252-8582-1e3f6ab0ccba",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "console.log(\"post-res for collection\");"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "8d8e0cf9-7a1a-445c-9321-fcaffae6f1c6",
+      "key": "baseURL",
+      "value": ""
+    },
+    {
+      "id": "f87b70f5-fab4-48c0-84b9-9b75ac67f5e5",
+      "key": "baseURL1",
+      "value": ""
+    }
+  ]
+}
