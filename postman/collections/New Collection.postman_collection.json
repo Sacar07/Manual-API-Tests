@@ -25,9 +25,9 @@
           "script": {
             "id": "6971cff7-cf8a-459f-839d-af14a887e087",
             "exec": [
-              "// const response = pm.response.json();\r",
-              "// pm.environment.set(\"token\", response.accessToken);\r",
-              "// console.log(\"token saved\", response.accessToken);"
+              "const response = pm.response.json();\r",
+              "pm.environment.set(\"token\", response.accessToken);\r",
+              "console.log(\"token saved\", response.accessToken);"
             ],
             "type": "text/javascript",
             "packages": {},
@@ -116,6 +116,8 @@
             "exec": [
               "console.log(\"Final URL:\", pm.request.url.toString());\r",
               "console.log(\"Auth header:\", pm.request.headers.get(\"Authorization\"));\r",
+              "\r",
+              "pm.environment.set(\"baseurl_order\", \"https://simple-books-api.click\");\r",
               ""
             ],
             "type": "text/javascript",
@@ -132,7 +134,11 @@
               "    pm.expect(pm.request.headers.get(\"Authorization\")).to.include(\"Bearer\");\r",
               "});\r",
               "\r",
-              "console.log(\"Auth header:\", pm.request.headers.get(\"Authorization\"));"
+              "console.log(\"Auth header:\", pm.request.headers.get(\"Authorization\"));\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "const order_id = jsonData.orderId ;\r",
+              "pm.environment.set(\"order_id\",order_id )"
             ],
             "type": "text/javascript",
             "packages": {},
@@ -142,6 +148,16 @@
       ],
       "id": "13f6781f-da1f-493a-a133-cc2be5ba357e",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "POST",
         "header": [],
         "body": {
@@ -154,11 +170,9 @@
           }
         },
         "url": {
-          "raw": "https://simple-books-api.click/orders",
-          "protocol": "https",
+          "raw": "{{baseurl_order}}/orders",
           "host": [
-            "simple-books-api",
-            "click"
+            "{{baseurl_order}}"
           ],
           "path": [
             "orders"
@@ -188,16 +202,132 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Get All Orders",
+      "id": "d6d79fbe-52c3-4a05-ab46-850827c6fbb6",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseurl_order}}/orders",
+          "host": [
+            "{{baseurl_order}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Single Order",
+      "id": "3707312c-fa8d-48f8-b32d-3be310f7ae06",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseurl_order}}/orders/{{order_id}}",
+          "host": [
+            "{{baseurl_order}}"
+          ],
+          "path": [
+            "orders",
+            "{{order_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Order",
+      "id": "57aa6c44-fec1-45ed-b082-60c8971d90e1",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"customerName\": \"Sacar\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseurl_order}}/orders//{{order_id}}",
+          "host": [
+            "{{baseurl_order}}"
+          ],
+          "path": [
+            "orders",
+            "",
+            "{{order_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Order",
+      "id": "1e260199-a5ee-4db7-af29-cc1f526360ac",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseurl_order}}/orders//{{order_id}}",
+          "host": [
+            "{{baseurl_order}}"
+          ],
+          "path": [
+            "orders",
+            "",
+            "{{order_id}}"
+          ]
+        }
+      },
+      "response": []
     }
-  ],
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "201aba6105af377de90bf40661419f071071f579c38e76d656de6e7436371fe0",
-        "type": "string"
-      }
-    ]
-  }
+  ]
 }
