@@ -1,0 +1,203 @@
+{
+  "info": {
+    "_postman_id": "a7743680-b699-45eb-a3b8-7db26d4d24c3",
+    "name": "BooksAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Token",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "8444b945-9f3c-4ab3-8227-99517bd0bc86",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "6971cff7-cf8a-459f-839d-af14a887e087",
+            "exec": [
+              "// const response = pm.response.json();\r",
+              "// pm.environment.set(\"token\", response.accessToken);\r",
+              "// console.log(\"token saved\", response.accessToken);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "1748b8b5-720f-448c-b367-6d74cb95a465",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"clientName\" : \"symfamous\",\r\n    \"clientEmail\" : \"simp@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://simple-books-api.glitch.me/api-clients/",
+          "protocol": "https",
+          "host": [
+            "simple-books-api",
+            "glitch",
+            "me"
+          ],
+          "path": [
+            "api-clients",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Status of Books",
+      "id": "ad658f05-10c4-456f-a07c-cbaeb441acd2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://simple-books-api.glitch.me/status",
+          "protocol": "https",
+          "host": [
+            "simple-books-api",
+            "glitch",
+            "me"
+          ],
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List of Books",
+      "id": "51ed42aa-4871-424b-a263-2cb2a3782417",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://simple-books-api.glitch.me/books",
+          "protocol": "https",
+          "host": [
+            "simple-books-api",
+            "glitch",
+            "me"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Submit Order",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ebe2c597-f932-4ea2-a5a2-f85ed900d018",
+            "exec": [
+              "console.log(\"Final URL:\", pm.request.url.toString());\r",
+              "console.log(\"Auth header:\", pm.request.headers.get(\"Authorization\"));\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "c9236df4-a93b-41b3-adfd-668525dcb653",
+            "exec": [
+              "pm.test(\"Authorization header was sent\", () => {\r",
+              "    pm.expect(pm.request.headers.get(\"Authorization\")).to.include(\"Bearer\");\r",
+              "});\r",
+              "\r",
+              "console.log(\"Auth header:\", pm.request.headers.get(\"Authorization\"));"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "13f6781f-da1f-493a-a133-cc2be5ba357e",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"bookId\" : 1,\r\n    \"customerName\": \"John\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://simple-books-api.click/orders",
+          "protocol": "https",
+          "host": [
+            "simple-books-api",
+            "click"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Single Book",
+      "id": "be6e053f-d6f1-4c04-adac-d0c363c8bd02",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://simple-books-api.glitch.me/books/1",
+          "protocol": "https",
+          "host": [
+            "simple-books-api",
+            "glitch",
+            "me"
+          ],
+          "path": [
+            "books",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "201aba6105af377de90bf40661419f071071f579c38e76d656de6e7436371fe0",
+        "type": "string"
+      }
+    ]
+  }
+}
